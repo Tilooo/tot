@@ -1,0 +1,17 @@
+tot/flashcards/templates/flashcards/flashcard_confirm_delete.html
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="confirmation">
+    <h2 class="confirmation__title">Delete Flashcard</h2>
+    <p class="confirmation__message">Are you sure you want to delete the flashcard "{{ object.question }}"?</p>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="confirmation__buttons">
+        <button class="confirmation__button confirmation__button--confirm" type="submit">Confirm</button>
+        <a class="confirmation__button confirmation__button--cancel" href="{% url 'flashcards:flashcard-list' object.box.pk %}">Cancel</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}
