@@ -1,0 +1,24 @@
+#tot/tot/flashcards/templates/flashcards/language_set_list.html
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Language Sets</h1>
+
+  <ul>
+    {% for language_set in language_sets %}
+      <li>
+        <a href="{% url 'flashcards:language_set_update' language_set.pk %}">{{ language_set.name }}</a>
+        <form method="post" action="{% url 'flashcards:language_set_delete' language_set.pk %}" style="display: inline;">
+          {% csrf_token %}
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    {% empty %}
+      <li>No language sets available.</li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'flashcards:language_set_create' %}">Create Language Set</a>
+{% endblock %}
+
