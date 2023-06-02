@@ -1,0 +1,76 @@
+#tot/flashcards/templates/flashcards/flashcard_confirm_delete.html
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="confirmation">
+    <h2 class="confirmation__title">Delete Flashcard</h2>
+    <p class="confirmation__message">Are you sure you want to delete the flashcard "{{ object.question }}"?</p>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="confirmation__buttons">
+        <button class="confirmation__button confirmation__button--confirm" type="submit">Confirm</button>
+        <a class="confirmation__button confirmation__button--cancel" href="{% url 'flashcards:flashcard-list' object.box.pk %}">Cancel</a>
+      </div>
+    </form>
+  </div>
+
+  <style>
+    /* Custom CSS Styles for flashcard_confirm_delete.html */
+    .confirmation {
+      text-align: center;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #f8f8f8;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+    }
+
+    .confirmation__title {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .confirmation__message {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #666;
+    }
+
+    .confirmation__buttons {
+      display: flex;
+      justify-content: center;
+    }
+
+    .confirmation__button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 0 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .confirmation__button--confirm {
+      background-color: #ff5f5f;
+      color: #fff;
+    }
+
+    .confirmation__button--confirm:hover {
+      background-color: #ff4242;
+    }
+
+    .confirmation__button--cancel {
+      background-color: #bcbcbc;
+      color: #fff;
+    }
+
+    .confirmation__button--cancel:hover {
+      background-color: #a6a6a6;
+    }
+  </style>
+{% endblock %}
