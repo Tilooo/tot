@@ -6,7 +6,6 @@ from django.http import HttpResponseServerError
 from .models import LanguageSet, FlashcardBox, Flashcard
 from .forms import LanguageSetForm, FlashcardBoxForm, FlashcardForm
 
-
 def clear_template_cache(request):
     try:
         get_template('base.html').template.cache.clear()
@@ -43,19 +42,19 @@ class LanguageSetDeleteView(DeleteView):
 
 class FlashcardBoxCreateView(CreateView):
     model = FlashcardBox
-    template_name = 'flashcards/flashcard_box_form.html'
+    template_name = 'flashcards/box_create.html'
     form_class = FlashcardBoxForm
 
 
 class FlashcardBoxUpdateView(UpdateView):
     model = FlashcardBox
-    template_name = 'flashcards/flashcard_box_form.html'
+    template_name = 'flashcards/box_update.html'
     form_class = FlashcardBoxForm
 
 
 class FlashcardBoxDeleteView(DeleteView):
     model = FlashcardBox
-    template_name = 'flashcards/flashcard_box_confirm_delete.html'
+    template_name = 'flashcards/box_confirm_delete.html'
 
     def get_success_url(self):
         return reverse_lazy('flashcards:language_set_detail', kwargs={'pk': self.object.set.pk})
@@ -64,13 +63,13 @@ class FlashcardBoxDeleteView(DeleteView):
 
 class FlashcardCreateView(CreateView):
     model = Flashcard
-    template_name = 'flashcards/flashcard_form.html'
+    template_name = 'flashcards/flashcard_create.html'
     form_class = FlashcardForm
 
 
 class FlashcardUpdateView(UpdateView):
     model = Flashcard
-    template_name = 'flashcards/flashcard_form.html'
+    template_name = 'flashcards/flashcard_update.html'
     form_class = FlashcardForm
 
 
@@ -80,4 +79,3 @@ class FlashcardDeleteView(DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('flashcards:flashcard_box_detail', kwargs={'pk': self.object.box.pk})
-
