@@ -1,5 +1,6 @@
 #tot/tot/flashcards/models.py
 
+from django.urls import reverse
 from django.db import models
 
 class LanguageSet(models.Model):
@@ -13,3 +14,7 @@ class Flashcard(models.Model):
     box = models.ForeignKey(FlashcardBox, on_delete=models.CASCADE, related_name='flashcards')
     question = models.TextField()
     answer = models.TextField()
+
+    def get_absolute_url(self):
+        return reverse('language-set-detail', kwargs={'pk': self.box.set.pk})
+
