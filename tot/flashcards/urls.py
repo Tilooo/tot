@@ -1,5 +1,3 @@
-#tot/tot/flashcards/urls.py
-
 from django.urls import path
 from .views import (
     LanguageSetListView, LanguageSetCreateView, LanguageSetUpdateView, LanguageSetDeleteView,
@@ -21,5 +19,6 @@ urlpatterns = [
     path('flashcard/update/<int:pk>/', FlashcardUpdateView.as_view(), name='flashcard_update'),
     path('flashcard/delete/<int:pk>/', FlashcardDeleteView.as_view(), name='flashcard_delete'),
 ]
+
 
 
