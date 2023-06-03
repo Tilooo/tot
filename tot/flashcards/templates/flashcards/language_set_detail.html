@@ -6,5 +6,18 @@
   <h1>{{ language_set.name }}</h1>
   <!-- Display other language set details as needed -->
 
-  <!-- Add the updated code here to display the list of boxes and provide links -->
+  <h2>Boxes</h2>
+  <ul>
+    {% for box in language_set.boxes.all %}
+      <li>
+        <a href="{% url 'flashcards:box_detail' pk=box.pk %}">{{ box.name }}</a>
+        <!-- Add links for editing and deleting the box -->
+        <a href="{% url 'flashcards:box_update' pk=box.pk %}">Edit</a>
+        <a href="{% url 'flashcards:box_delete' pk=box.pk %}">Delete</a>
+      </li>
+    {% empty %}
+      <li>No boxes available.</li>
+    {% endfor %}
+  </ul>
 {% endblock %}
+

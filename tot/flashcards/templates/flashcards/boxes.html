@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Boxes</h2>
+    <a href="{% url 'box-create' %}">Create Box</a>
+    <ul>
+        {% for box in object_list %}
+            <li>
+                {{ box.name }}
+                <a href="{% url 'box-update' box.pk %}">Edit</a>
+                <a href="{% url 'box-delete' box.pk %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

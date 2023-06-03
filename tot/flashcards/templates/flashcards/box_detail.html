@@ -1,0 +1,22 @@
+<!-- box_detail.html -->
+
+{% extends 'flashcards/base.html' %}
+
+{% block content %}
+  <h1>{{ flashcard_box.name }}</h1>
+  <!-- Display other flashcard box details as needed -->
+
+  <h2>Flashcards</h2>
+  <ul>
+    {% for flashcard in flashcard_box.flashcards.all %}
+      <li>
+        {{ flashcard.term }} - {{ flashcard.definition }}
+        <!-- Add links for editing and deleting the flashcard -->
+        <a href="{% url 'flashcards:flashcard_update' pk=flashcard.pk %}">Edit</a>
+        <a href="{% url 'flashcards:flashcard_delete' pk=flashcard.pk %}">Delete</a>
+      </li>
+    {% empty %}
+      <li>No flashcards available.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
