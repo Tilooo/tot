@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from django.template.loader import get_template
 from django.http import HttpResponseServerError
@@ -16,7 +15,6 @@ def clear_template_cache(request):
 
 
 # Language Set Views
-
 class LanguageSetListView(ListView):
     model = LanguageSet
     template_name = 'flashcards/language_set_list.html'
@@ -28,8 +26,6 @@ class LanguageSetCreateView(CreateView):
     template_name = 'flashcards/language_set_form.html'
     form_class = LanguageSetForm
     success_url = reverse_lazy('flashcards:language_set_list')
-
-
 
 
 class LanguageSetUpdateView(UpdateView):
@@ -60,7 +56,6 @@ class FlashcardBoxUpdateView(UpdateView):
 class FlashcardBoxDeleteView(DeleteView):
     model = FlashcardBox
     template_name = 'flashcards/flashcard_box_confirm_delete.html'
-    context_object_name = 'box'
 
     def get_success_url(self):
         return reverse_lazy('flashcards:language_set_detail', kwargs={'pk': self.object.set.pk})
@@ -82,9 +77,7 @@ class FlashcardUpdateView(UpdateView):
 class FlashcardDeleteView(DeleteView):
     model = Flashcard
     template_name = 'flashcards/flashcard_confirm_delete.html'
-    context_object_name = 'flashcard'
 
     def get_success_url(self):
         return reverse_lazy('flashcards:flashcard_box_detail', kwargs={'pk': self.object.box.pk})
-
 
